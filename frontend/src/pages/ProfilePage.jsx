@@ -20,8 +20,8 @@ const ProfilePage = () => {
 
   const { mutate: updateProfile } = useMutation({
     mutationKey: ["updateProfile"],
-    mutationFn: (updatedData) =>
-      axiosInstance.put("/users/profile", updatedData),
+    mutationFn: async (updatedData) =>
+      await axiosInstance.put("/users/profile", updatedData),
     onSuccess: () => {
       toast.success("Profile updated successfully");
       queryClient.invalidateQueries(["userProfile", username]);
